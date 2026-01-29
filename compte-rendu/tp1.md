@@ -58,3 +58,19 @@ On éxécute la commande `df -h` pour avoir l'espace disque utilisé sur la mach
 - `cat /etc/passwd | grep -vE ’nologin|sync’` :  [image users](../images/tp1/users.png)
 - `fdisk -l et fdisk -x`:  [image fdisk](../images/tp1/fdisk.png)
 - `df -h`: sert à afficher l'espace disque utilisé sur la machine virtuelle compréhensible par un humain c'est à dire en MO, GO
+
+## Aller plus loin
+ 
+Le `pressed` sert à automatiser les installations de Debian. On fournit un fichier de configuration contenant les réponses (langue, partitionnement, etc.), permettant de déployer plusieurs serveurs de manière identique sans intervention manuelle.
+
+Le `Rescue mode`:
+1. Redémarrer la machine virtuelle et appuie sur `e` au menu GRUB
+2. Trouve la ligne qui commence par `linux` et ajoute `init=/bin/bash` à la fin de la ligne
+3. Appuie sur `Ctrl+x` pour quitter le mode de démarrage
+4. Remonte la partition racine en écriture: `mount -o remount,rw /`
+5. Tape `passwd` pour changer le mot de passe de l'utilisateur root
+
+Redimensionne la partition racine:
+1. Augmenter la taille du disque dur de la machine virtuelle dans VirtalBox
+2. Utiliser `fdisk` pour agrandir la partition racine
+3. Utiliser `resize2fs /dev/sda1` pour redimensionner la partition racine
