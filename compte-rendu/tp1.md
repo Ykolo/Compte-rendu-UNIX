@@ -37,3 +37,24 @@ Dans la machine virtuellem on lance l'installation en mode expert:
 Et finalement on reboot la machine virtuelle 
 
 ## Linux et son environnement
+
+### Package
+On éxécute la commande `dpkg -l | wc -l` pour compter le nombre de paquets installés. Moi j'ai eu 229.
+[image du dpkg -l | wc -l](../images/tp1/dpkg.png)
+
+### SSH
+La configuration de SSH sera dans le tp2.
+
+### Space Usage
+On éxécute la commande `df -h` pour avoir l'espace disque utilisé sur la machine virtuelle.
+[image du df -h](../images/tp1/space-usage.png)
+
+### Résultats des commandes:
+- `echo $LANG`: en_US.UTF-8 [image LANG](../images/tp1/lang.png)
+- `man hostname`: ça nous donne le man de hostname et on trouve l'option -d pour donner le nom de domaine [image man](../images/tp1/man.png)
+- `hostname -d`: ufr-info-p6.jussieu.fr [image hostname](../images/tp1/hostname.png)
+- `cat /etc/apt/sources.list | grep -v -E ’^#|^$’`: deb http://deb.debian.org/debian/ trixie main [image cat-sources](../images/tp1/cat-sources.png)
+- `cat /etc/shadow | grep -vE ’:\*:|:!\*:’`: je n'ai rien je pense que j'ai dû mal configurer quelque chose [image shadow](../images/tp1/shadow.png)
+- `cat /etc/passwd | grep -vE ’nologin|sync’` :  [image users](../images/tp1/users.png)
+- `fdisk -l et fdisk -x`:  [image fdisk](../images/tp1/fdisk.png)
+- `df -h`: sert à afficher l'espace disque utilisé sur la machine virtuelle compréhensible par un humain c'est à dire en MO, GO
