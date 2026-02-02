@@ -47,3 +47,35 @@ Autres techniques pour se protéger :
 - AllowUsers : Créer une liste de noms d'utilisateurs qui ont le droit de se connecter, et interdire tous les autres.
   - Avantage : Contrôle total sur qui entre.
   - Inconvénient : Si tu crées un nouvel utilisateur et que tu oublies de l'ajouter à la liste, il ne pourra jamais se connecter au serveur.
+
+## Processus
+
+- L'information TIME correspond au temps CPU cumulé, le temps total pendant lequel le processus a travaillé depuis son lancement.
+- Le processus ayant le plus utilisé le CPU est la commande `ps -eo pid,ppid,cmd,pcpu --sort=-pcpu | head -n 15` [image ps-cpu](../images/tp2/ps-cpu.png)
+- Le premier processus qui a été lancé est /bin/init, on utilise la commande `ps -eo pid,ppid,start,cmd | head -n 10` [image ps-start](../images/tp2/ps-start.png)
+- Pour savoir à quelle heure la machine a été demarrée on utilise la commande `who -b` [image who-b](../images/tp2/who-b.png)
+- Pour savoir le nombre de processus créés par depuis le démarrage on utilise la commande `cat /proc/loadavg` [image loadavg](../images/tp2/loadavg.png)
+
+### PPID
+- Pour afficher le PPID d'un processus on utilise la commande `ps -o pid,ppid,cmd` [image ppid](../images/tp2/ppid.png)
+- Pour afficher la list ordonée des processus ancêtres de la commande ps en cours d'exécution on utilise la commande `ps -o pid,ppid,cmd --sort=-pid` [image parent](../images/tp2/parent.png)
+
+### PSTREE
+- `pstree` : affiche la structure de processus en arbre [image pstree](../images/tp2/pstree.png)
+
+### TOP
+- `top` : affiche les processus en cours d'exécution et leurs utilisation CPU 
+- Quand on est dans `top` on appuie sur `shift + m` pour avoir la liste des processus par ordre décroissant de mémoire utilisée [images top M](../images/tp2/memory.png)
+- Le processus ayant le plus utilisé de mémoire c'est `systemd`. C'est le gestionnaire de processus qui est lancé au démarrage de la machine. 
+- Commandes:
+  - Passer l'affichage en couleur: appuyer sur `z`
+  - Mettre en avant la colonne de tri: `b`
+  - Changer la colonne de tri: `<` et `>`
+- `htop`: [image htop](../images/tp2/htop.png)
+  - Avantages de htop:
+    - Lisibilité immédiate : Les jauges en haut de l'écran permettent de comprendre instantanément si le système est saturé.
+    - Gestion des processus : Vous pouvez envoyer un signal (comme SIGKILL) à un processus simplement en le sélectionnant et en appuyant sur F9.
+    - Vue en arbre : Appuyer sur F5 affiche directement la hiérarchie parent-enfant (comme pstree), ce qui est très utile pour voir quel processus a lancé quel autre.
+  - Inconvénients de htop:
+    - Dépendances : Sur un serveur de production minimaliste ou en mode secours (Rescue), il est rare qu'il soit installé. Il faut donc toujours savoir manipuler top.
+    - Consommation : Il utilise légèrement plus de cycles CPU pour rafraîchir son interface colorée, ce qui peut être un facteur sur des systèmes extrêmement limités.
