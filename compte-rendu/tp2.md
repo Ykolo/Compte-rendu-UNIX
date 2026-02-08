@@ -79,3 +79,38 @@ Autres techniques pour se protéger :
   - Inconvénients de htop:
     - Dépendances : Sur un serveur de production minimaliste ou en mode secours (Rescue), il est rare qu'il soit installé. Il faut donc toujours savoir manipuler top.
     - Consommation : Il utilise légèrement plus de cycles CPU pour rafraîchir son interface colorée, ce qui peut être un facteur sur des systèmes extrêmement limités.
+    
+## Arrêt de processus
+La commande `ps`: "report a snapshot of the current processes", elle permet de lister les processus en cours d'exécution.
+
+La commande `jobs`: "display status of jobs in the current session", contrairement à `ps`, elle ne liste que les processus lancés depuis le shell courant. [img-man-jobs](../images/tp2/man-jobs.png]
+
+La commande `fg`: "move jobs to the foreground", elle permet de mettre un processus en avant-plan.
+
+La commande `kill`: "send a signal to a process", contrairement à son nom elle ne tue pas directement mais envoie des sigaux à un processus  généralement pour l'arrêter. [img-man-kill](../images/tp2/man-kill.png]
+
+## Tubes
+La commande `cat` permet de lire et afficher le contenu d'un fichier.
+
+La commande `tee` permet de lire depuis l'entrée standard et d'écrire à la fois dans un fichier et dans la sortie standard.
+
+La commande `ls | cat` permet d'afficher la liste des fichiers. [img-ls-cat](../images/tp2/ls-cat.png)
+La commande `ls -l | cat > liste` Le contenu est écrit dans le fichier liste. [img-cat-liste](../images/tp2/cat-liste.png)
+La commande `ls -l | tee liste` Le contenu est écrit dans le fichier liste et affiché dans le terminal. [img-tee-liste](../images/tp2/tee-liste.png)
+La commande `ls -l | tee liste | wc -l` le fichier contient le détail du `ls -l` et le terminal affiche le nombre de lignes du `ls -l`. [img-wc-l](../images/tp2/wc-l.png)
+
+## Rsylog
+[img-rsyslog](../images/tp2/rsyslog.png]
+[img-rsyslog-conf](../images/tp2/rsyslog-conf.png]
+Les logs d'authentification sont stockés dans le fichier `/var/log/auth.log`.
+Les logs du système sont stockés dans le fichier `/var/log/syslog`.
+
+## Cron
+Le service cron sert à planifier des tâches à exécuter à des moments précis.
+`tail -f` permet d'afficher les dernières lignes d'un fichier et de suivre les modifications en temps réel. [img-tail-f](../images/tp2/tail-f.png]
+
+Le fichier `/etc/logrotate.conf` est le fichier de configuration principal du système de rotation des journaux (logs). 
+
+`dsmeg` affiche les messages du noyau
+[img-dmesg-cpu](../images/tp2/dmesg-cpu.png)
+[img-dmesg-net](../images/tp2/dmesg-net.png)
