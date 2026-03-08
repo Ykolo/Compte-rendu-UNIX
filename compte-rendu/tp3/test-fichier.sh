@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [ $# -ne 1 ]; then
+    echo "Erreur: Vous devez rentrez au moins un paramètre"
     echo "Usage: $0 <nom_du_fichier>"
     exit 1
 fi
